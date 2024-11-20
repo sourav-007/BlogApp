@@ -4,7 +4,7 @@ const UserModel = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
 
-const verifytJWT = asyncErrorHandler( async (req, res, next) => {
+const verifyJWT = asyncErrorHandler( async (req, res, next) => {
 
     try {
         //console.log('Cookies:', req.cookies);
@@ -50,4 +50,4 @@ const isUser = asyncErrorHandler( async (req,res,next) => {
 } )
 
 
-module.exports = { verifytJWT, isAdmin, isUser }
+module.exports = { verifyJWT, isAdmin, isUser }

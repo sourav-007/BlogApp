@@ -31,13 +31,28 @@ const userSchema = mongoose.Schema(
             type : String,
             enum : ['user', 'admin'],
             default : 'user'
+        },
+        avatar : {
+            type : String
+        },
+        savedBlogs: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'BlogModel'
+            }
+        ],
+        resetPasswordToken: {
+            type: String
+        },
+        resetPasswordTokenExpiries:{
+            type: Date
         }
     }
 )
 
 userSchema.pre("save", async function (next){
     if(!this.isModified("password")) return next();
-
+   
     this.password = await bcrypt.hash(this.password, 10)
 
     if(this.email === process.env.ADMIN_EMAIL){
@@ -55,7 +70,8 @@ userSchema.methods.generateAccessToken =  function(){
     return jwt.sign(
         {
             _id : this._id,
-            username : this.username,
+            firstname : this.firstname,
+            lastname : this.lastname,
             email : this.email
         },
         process.env.ACCESS_TOKEN_SECRET,
@@ -64,6 +80,7 @@ userSchema.methods.generateAccessToken =  function(){
         }
     )
 }
+
 
 const UserModel = mongoose.model("User", userSchema);
 
