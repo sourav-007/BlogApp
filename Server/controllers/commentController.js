@@ -53,10 +53,6 @@ const getCommentByPostId = asyncErrorHandler(async (req, res) => {
 
     // const { postId } = req.params
 
-    // if (!postId) {
-    //     throw new ApiError(400, "Post Id is required")
-    // }
-
     const comment = await CommentModal.find({ postId : req.params.id }).sort({ created_at: -1 })
 
     if (!comment) {
@@ -95,18 +91,6 @@ const updateComment = asyncErrorHandler(async (req, res) => {
     existedComment.content = content
     const updateComment = await existedComment.save()
 
-    // const updatedComment = await CommentModal.findByIdAndUpdate(
-    //     req.params.commentId,
-    //     {
-    //         $set: {
-    //             content
-    //         }
-    //     },
-    //     {
-    //         new: true
-    //     }
-    // )
-
     if (!updatedComment) {
         throw new ApiError(404, "Updated Comment not found")
     }
@@ -116,32 +100,6 @@ const updateComment = asyncErrorHandler(async (req, res) => {
         .json(new ApiResponse(200, updatedComment, "Comment updated successfully"))
 
 })
-
-// const updateComment = async (req, res) => {
-//     try {
-//         const { commentId } = req.params;
-//         const { content } = req.body; // Ensure the body contains the content
-//         const userId = req.user.id;  // Authenticated user's ID
-
-//         const comment = await Comment.findById(commentId);
-//         if (!comment) {
-//             return res.status(404).json({ message: 'Comment not found' });
-//         }
-
-//         // Ensure only the comment's author can edit it
-//         if (comment.user.toString() !== userId) {
-//             return res.status(403).json({ message: 'You do not have permission to edit this comment' });
-//         }
-
-//         // Update the content
-//         comment.content = content;
-//         const updatedComment = await comment.save();
-
-//         res.status(200).json(updatedComment);
-//     } catch (error) {
-//         res.status(500).json({ message: 'Something went wrong', error: error.message });
-//     }
-// };
 
 
 

@@ -151,7 +151,6 @@ const EditBlog = () => {
                             <textarea
                                 name='introduction'
                                 value={content.introduction}
-                                // onChange={(e) => setContent({ ...content, [e.target.name]: e.target.value })}
                                 onChange={(e) => {
                                     const updatedContent = { ...content, introduction: e.target.value };
                                     setContent(updatedContent);

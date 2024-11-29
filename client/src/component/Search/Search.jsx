@@ -12,7 +12,6 @@ function Search() {
     const handleSearch = async (e) => {
         e.preventDefault();
         setQuery(searchQ)
-        //navigate('/search');
         navigate(`/search?query=${encodeURIComponent(searchQ)}`);
     }
     //console.log('search component Q:', setQuery(searchQ))
@@ -25,7 +24,6 @@ function Search() {
                 <FaSearch className="absolute left-4 block h-5 w-5 text-gray-400" />
                 <input
                     type="text"
-                    //name="search"
                     className="h-14 w-full rounded-2xl py-4 pr-40 pl-12 outline-none focus:ring-1 ring-special bg-white text-primary-text"
                     placeholder="Search blogs by title, category, or tags..."
                     value={searchQ}

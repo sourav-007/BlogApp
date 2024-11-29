@@ -8,18 +8,18 @@ function Footer() {
         <>
             <footer className="relative flex flex-col w-full h-80 flex-wrap bg-gray-900 py-3 sm:flex-nowrap sm:justify-start">
 
-                <div className='container mx-auto flex flex-col md:flex-row items-center gap-6 mt-10 px-4'>
+                <div className='container mx-auto flex flex-col md:flex-row items-center justify-between gap-6 mt-10 px-4'>
 
                     <div className='flex flex-col gap-2 items-start text-white md:w-1/2'>
                         <h3 className='text-3xl md:text-4xl font-bauhaus font-bold'>
-                            Subscribe Us
+                            Subscribe to Our Newsletter
                         </h3>
                         <h4 className='text-sm md:text-base lg:text-lg font-bauhaus'>
                             Subscribe to get the latest blogs, trends, and updates delivered straight to your inbox.
                         </h4>
                     </div>
 
-                    <form className="relative flex items-center justify-between w-full md:w-1/2 rounded-2xl border shadow-lg bg-white">
+                    <form className="relative flex items-center justify-between w-full md:w-1/3 rounded-2xl border shadow-lg bg-white">
                         <input
                             type="email"
                             className="h-14 w-full rounded-2xl py-4 pl-5 pr-40 outline-none bg-white text-gray-700 placeholder-gray-400"

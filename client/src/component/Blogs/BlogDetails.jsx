@@ -309,8 +309,8 @@ function BlogDetails() {
                                         )
                                     }
                                 </div>
-                                {isEdit === comment._id ? (
-                                    <form onSubmit={(e) => handleUpdate(e, comment._id)} className='px-7'>
+                                {isEdit === comment?._id ? (
+                                    <form onSubmit={(e) => handleUpdate(e, comment?._id)} className='px-7'>
                                         <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 shadow">
                                             <textarea
                                                 value={editContent}
@@ -331,18 +331,9 @@ function BlogDetails() {
                                         </div>
                                     </form>
                                 ) : (
-                                    <p className="text-base text-gray-900 px-8">{comment.content}</p>
+                                    <p className="text-base text-gray-900 px-8">{comment?.content}</p>
                                 )}
 
-                                {/* <div className="flex items-center mt-4 space-x-4">
-                                    <button type="button"
-                                        className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium">
-                                        <svg className="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z" />
-                                        </svg>
-                                        Reply
-                                    </button>
-                                </div> */}
                             </article>
                         ))
                     )

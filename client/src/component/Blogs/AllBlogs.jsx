@@ -13,8 +13,7 @@ import { tagColorMapping } from '../utils/colorMap'
 function AllBlogs() {
 
     const { posts, getSortedPost } = useBlog()
-
-    // const [hoveredIndex, setHoveredIndex] = useState(null);
+    
     const [selectedOption, setSelectedOption] = useState("All");
     const [isSortVisible, setIsSortVisible] = useState(false);
     const dropdownRef = useRef(null)
@@ -94,9 +93,6 @@ function AllBlogs() {
                 {posts.map((post, index) => (
                     <div key={index} className={`flex flex-col h-full relative rounded-xl group transform transition-transform duration-500 
                         hover:scale-105`}
-                    // ${hoveredIndex === null ? `scale-100` : hoveredIndex === index ? 'scale-105' : 'scale-95'}
-                    // onMouseEnter={() => setHoveredIndex(index)}
-                    // onMouseLeave={() => setHoveredIndex(null)}
                     >
                         <div className="rounded-t-2xl">
                             <div className="relative">
@@ -149,9 +145,7 @@ function AllBlogs() {
                                     group-hover:translate-x-0 group-hover:opacity-100">
                                     Read more...
                                 </span>
-                                {/* <FaGreaterThan className="w-5 h-5 transform -translate-x-28 opacity-100 transition-all duration-300 ease-in-out 
-                                    group-hover:translate-x-0 group-hover:opacity-100"
-                                /> */}
+                                
                                 <FaAngleDoubleRight className="w-5 h-5 transform -translate-x-28 opacity-100 transition-all duration-300 ease-in-out 
                                     group-hover:translate-x-0 group-hover:opacity-100" />
                             </Link>

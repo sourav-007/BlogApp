@@ -1,18 +1,9 @@
 import React from 'react'
 import LatestRealease from './LatestRealease'
-import Entertainment from './Entertainment'
-import videoSrc from '../../assets/img/h.mp4';
-import hero1 from '../../assets/img/hero1.webp'
 import hero2 from '../../assets/img/hero2.webp'
-import hero3 from '../../assets/img/hero3.webp'
-import hero4 from '../../assets/img/hero4.webp'
 import { useNavigate } from 'react-router-dom';
 import { FaArrowRightLong } from "react-icons/fa6";
-import Sports from './Sports';
 import { useAuth } from '../../context/AuthContext';
-import Health from './Health';
-import Business from './Business';
-import Tech from './Tech';
 import TrendingPost from './TrendingPost';
 import Testimonials from './Testimonials';
 
@@ -28,13 +19,7 @@ function Home() {
 
         {!isLoggedIn &&
           <div className="container mx-auto relative mt-5 mb-5 h-[30rem] w-full overflow-hidden">
-            {/* <video
-              autoPlay
-              loop
-              muted
-              className="absolute top-0 left-0 px-6 min-h-full min-w-full object-cover opacity-[60%] brightness-50 "
-              src={videoSrc} type="video/mp4"
-            /> */}
+            
             <img src={hero2}
               className="absolute top-0 left-0 px-6 min-h-full min-w-full object-cover brightness-50 " />
 
@@ -71,11 +56,7 @@ function Home() {
           <div className='flex flex-col z-[9] self-stretch gap-[120px] md:gap-[90px] sm:gap-[60px]'>
             <LatestRealease />
           </div>
-          {/* <Entertainment />
-          <Sports />
-          <Health />
-          <Business />
-          <Tech /> */}
+          
         </div>
         <Testimonials />
       </div>

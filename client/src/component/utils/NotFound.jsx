@@ -23,7 +23,6 @@ function NotFound() {
                     <strong className="md:text-lg lg:text-2xl text-gray-600 mt-6">
                         Please log in to access the blogs.
                     </strong>
-                    {/* <Navigate to={isLoggedIn ? (userRole === 'admin' ? '/dashboard' : '/home') : '/login'} /> */}
                     <Link
                         to={isLoggedIn ? (role === 'admin' ? '/dashboard' : '/') : '/'}
                         className="flex items-center space-x-2 bg-primary-text hover:bg-primary-btn text-gray-100 px-4 py-2 mt-8 rounded 

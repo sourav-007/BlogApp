@@ -64,9 +64,7 @@ function TrendingPost() {
                                 }
                             </div>
 
-                            {/* <button disabled={!isLoggedIn}>
-                                <SaveCheckBox className='absolute right-3 top-3 w-6 h-6' blogId={post._id} />
-                            </button> */}
+                            
 
                             <button onClick={() => navigate(`/blogs/${post?._id}`)} disabled={!isLoggedIn}
                                 className={`flex items-center gap-1 w-fit mt-2 text-primary-text text-base font-semibold group cursor-pointer`}>

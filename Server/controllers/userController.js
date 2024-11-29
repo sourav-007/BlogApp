@@ -47,7 +47,7 @@ const registerUser = asyncErrorHandler(async (req, res) => {
 
     if (existedUser) {
         throw new ApiError(409, "User with email or username already exists")
-    }a
+    }
 
     const user = await UserModel.create({
         firstname,

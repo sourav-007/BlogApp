@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { FaAngleDoubleRight } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useBlog } from '../../context/BlogContext';
 
@@ -17,12 +17,7 @@ function LatestRealease() {
 
     return (
         <section className="container mx-auto p-4">
-            {/* <div className="flex justify-between items-center mb-10 px-1">
-                <h1 className="text-primary-text text-4xl font-bold">Latest Release</h1>
-                <button className="bg-primary-btn text-primary-btn-text flex items-center max-w-fit px-10 py-2 rounded-2xl">
-                    View All
-                </button>
-            </div> */}
+            
             <div className="flex justify-center items-center mb-10">
                 <h2 className="text-primary-text text-5xl font-bold font-mono">Latest Release</h2>
             </div>

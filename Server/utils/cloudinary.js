@@ -32,13 +32,6 @@ const uploadOnCloudinary = async (localFilePath) => {
     }
 }
 
-// const getPublicIdFromUrl = (url) => {
-//     const parts = url.split('/');
-//     const publicIdWithExtension = parts[parts.length - 1]; 
-//     const publicId = publicIdWithExtension.split('.')[0]; 
-//     return publicId;
-// };
-
 const getPublicIdFromUrl = (url) => {
     if (!url || typeof url !== 'string') {
         console.error("Invalid URL passed to getPublicIdFromUrl:", url);

@@ -18,9 +18,7 @@ const createPost = asyncErrorHandler(async (req, res) => {
         throw new ApiError(400, "Content must be an object with introduction, body, and conclusion fields");
     }
 
-    // if ([content.introduction, content.body, content.conclusion].some((field) => field.trim() === "")) {
-    //     throw new ApiError(400, "All content fields (introduction, body, conclusion) are required");
-    // }
+    
     if ([content.introduction, content.body, content.conclusion].some((field) => !field || field.trim() === "")) {
         throw new ApiError(400, "All content fields (introduction, body, conclusion) are required");
     }
@@ -39,9 +37,7 @@ const createPost = asyncErrorHandler(async (req, res) => {
     if (!coverImageLocalPath) {
         throw new ApiError(400, "Cover Image file id required")
     }
-    // if (!bodyImageLocalPath) {
-    //     throw new ApiError(400, "Body Image file id required")
-    // }
+    
 
     const coverImage = await uploadOnCloudinary(coverImageLocalPath)
     // const bodyImage = await uploadOnCloudinary(bodyImageLocalPath)
@@ -58,9 +54,7 @@ const createPost = asyncErrorHandler(async (req, res) => {
     if (!coverImage) {
         throw new ApiError(400, "Error uploading cover image")
     }
-    // if (bodyImage.some(img => !img)) {
-    //     throw new ApiError(400, "Error uploading body images")
-    // }
+   
 
 
     const posts = await BlogModel.create({
@@ -127,80 +121,6 @@ const getAllPost = asyncErrorHandler(async (req, res) => {
 
 })
 
-
-
-// const updatePostById = asyncErrorHandler(async (req, res) => {
-//     console.log('enterd backend');
-
-
-//     const { title, content, tags } = req.body
-
-//     if (!title && !content?.introduction && !content?.body && !content?.conclusion && !tags && !req.files?.coverImage && !req.files?.bodyImage) {
-//         throw new ApiError(400, "At least one field is required")
-//     }
-
-//     const existingPost = await BlogModel.findById(req.params.id);
-//     if (!existingPost) {
-//         throw new ApiError(404, "Post not found");
-//     }
-
-//     const updates = {};
-
-//     if (title?.trim()) updates.title = title.trim();
-//     //if (content?.trim()) updates.content = content.trim();
-//     if (content) {
-//         updates.content = updates.content || {}; // Initialize content if not already
-
-//         if (content.introduction?.trim()) updates.content.introduction = content.introduction.trim();
-//         if (content.body?.trim()) updates.content.body = content.body.trim();
-//         if (content.conclusion?.trim()) updates.content.conclusion = content.conclusion.trim();
-//     }
-//     if (tags && Array.isArray(tags)) updates.tags = tags;
-
-//     if (req.files?.coverImage) {
-//         console.log('entered');
-
-//         await deleteFromCloudinary(getPublicIdFromUrl(existingPost.coverImage));
-
-//         const coverImageLocalPath = req.files.coverImage[0]?.path;
-//         coverImage = await uploadOnCloudinary(coverImageLocalPath);
-//         if (!coverImage) {
-//             throw new ApiError(400, "Error uploading cover image");
-//         }
-//         updates.coverImage = coverImage.url;
-//     }
-
-//     if (req.files?.bodyImage) {
-
-//         const existingBodyImages = existingPost.bodyImage;
-//         await Promise.all(existingBodyImages.map(img => deleteFromCloudinary(getPublicIdFromUrl(img))));
-
-//         const bodyImageLocalPaths = req.files.bodyImage.map(file => file.path);
-//         bodyImage = await Promise.all(bodyImageLocalPaths.map(path => uploadOnCloudinary(path)));
-//         if (bodyImage.some(img => !img)) {
-//             throw new ApiError(400, "Error uploading body images");
-//         }
-//         updates.bodyImage = bodyImage.map(img => img.url);
-//     }
-
-//     if (Object.keys(updates).length === 0) {
-//         throw new ApiError(400, "No fields provided to update");
-//     }
-
-
-//     const updatedPosts = await BlogModel.findByIdAndUpdate(
-//         req.params?.id,
-//         updates,
-//         { new: true }
-//     )
-
-//     return res
-//         .status(200)
-//         .json(new ApiResponse(200, updatedPosts, "Blog post updated successfully")),
-
-//         console.log("Blog post updated");
-
-// })
 
 const updatePostById = asyncErrorHandler(async (req, res) => {
     console.log('entered backend');

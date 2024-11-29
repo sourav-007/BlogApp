@@ -10,11 +10,6 @@ import Search from '../Search/Search';
 function Header() {
 
     const { logout, getUser, isLoggedIn, } = useAuth();
-    //const isLoggedIn = localStorage.getItem('loggedIn')
-
-    // console.log('is',isLoggedIn);
-    // console.log('get',getUser);
-    //console.log('get',getUser.avatar);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -70,15 +65,6 @@ function Header() {
 
                         <ul className={`flex flex-col lg:flex-row lg:space-x-8 md:flex-row md:space-x-8 md:mt-0 lg:mt-0 font-medium`}>
 
-                            {/* <li>
-                                <Link to="/all-blogs" className={`block py-2 xl:text-xl lg:text-lg md:text-sm hover:text-gray-700 hover:scale-105 ${isLoggedIn
-                                    ? `border-indigo-500 text-primary-text hover:text-special ${location.pathname === '/all-blogs' ? `text-special-hover scale-105` : ``}`
-                                    : 'border-transparent text-primary-text hover:text-primary-text cursor-not-allowed'
-                                    }`} onClick={(e) => !isLoggedIn && e.preventDefault()}
-                                >
-                                    All
-                                </Link>
-                            </li> */}
 
                             {
                                 getUser?.role === 'admin' ? (
@@ -175,9 +161,7 @@ function Header() {
 
                     <button
                         className="md:hidden"
-                        // onClick={() => setIsMenuOpen(!isMenuOpen)}
                         onClick={() => {
-                            // setIsMenuOpen(!isMenuOpen);
                             toggleMenu();
                             if (isSearchOpen) {
                                 setIsSearchOpen(false);
@@ -285,22 +269,7 @@ function Header() {
                 ${isSearchOpen ? 'translate-y-full opacity-100' : 'translate-y-0 opacity-0'} transition-all duration-200 ease-in-out 
                 ${isSearchOpen ? '' : 'pointer-events-none'}`}
                 >
-                    {/* <form className="relative mx-auto flex max-w-[80%] mt-2 p-0 items-center justify-between rounded-2xl border shadow-lg bg-white">
-                        <FaSearch className="absolute left-4 block h-5 w-5 text-gray-400" />
-                        <input
-                            type="name"
-                            name="search"
-                            className="h-14 w-full rounded-2xl py-4 pr-40 pl-12 outline-none focus:ring-1 ring-special bg-white text-primary-text"
-                            placeholder="Blogs..."
-                        />
-                        <button
-                            type="submit"
-                            className="absolute right-0 mr-2 inline-flex h-11 items-center justify-center rounded-xl bg-primary-btn px-10 
-                            font-medium font-sans text-white focus:ring-4 hover:bg-[#2B2D42] "
-                        >
-                            Search
-                        </button>
-                    </form> */}
+                    
                     <Search />
                 </div>
 

@@ -14,7 +14,6 @@ function Account() {
     })
 
     const [currentAvatar, setCurrentAvatar] = useState(getUser?.avatar || default_avatar);
-    //const [avatarPreview, setAvatarPreview] = useState(null);
 
     useEffect(() => {
         if (getUser) {
@@ -44,7 +43,6 @@ function Account() {
     const handleAvatar = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            //setAvatarPreview(URL.createObjectURL(file));
             const formData = new FormData();
             formData.append('avatar', file);
 
@@ -79,7 +77,6 @@ function Account() {
                                     <div className='absolute top-6 right-14 left-14'>
                                         <img className="mx-auto w-40 h-40 text-xl text-primary-btn-text border-[5px] border-solid rounded-full
                                         flex items-center justify-center object-center whitespace-normal"
-                                            // src={ avatarPreview || currentAvatar }
                                             src={ currentAvatar }
                                             alt='avatar'
                                         />
