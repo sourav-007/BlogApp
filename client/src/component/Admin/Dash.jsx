@@ -26,7 +26,7 @@ function Dash() {
 
 
     return (
-        <section className="container mx-auto mt-32 px-4 py-8 border-2 border-solid border-red-700">
+        <section className="container mx-auto mt-32 px-4 py-8">
 
             <div className="flex items-center justify-end mb-10">
                 <button

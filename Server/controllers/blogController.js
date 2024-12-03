@@ -3,6 +3,9 @@ const ApiResponse = require('../utils/ApiResponse');
 const ApiError = require('../utils/ApiError');
 const BlogModel = require('../models/blogModel');
 const { uploadOnCloudinary, deleteFromCloudinary, getPublicIdFromUrl } = require('../utils/cloudinary');
+const UserModel = require('../models/userModel');
+const nodemailer = require('nodemailer')
+const { postNotifyEmailTemplate } = require('../utils/emailTemplates');
 
 
 const createPost = asyncErrorHandler(async (req, res) => {
@@ -74,6 +77,40 @@ const createPost = asyncErrorHandler(async (req, res) => {
 
     if (!createdPosts) {
         throw new ApiError(500, "Something went wrong while creating the new blog post")
+    }
+
+    const subcribedUsers = await UserModel.find({isSubscriber: true})
+    const emailList = subcribedUsers.map(user => user.email)    
+
+    if(emailList.length > 0){
+        const transporter = nodemailer.createTransport({ 
+            service: 'gmail',
+            auth: {
+                user: process.env.MAILER_EMAIL,
+                pass: process.env.MAILER_EMAIL_PASSWORD
+            },
+        })
+
+        const emails = emailList.map((email) => {
+            const user = subcribedUsers.find((user) => user.email === email);
+            const mailOptions = {
+                from: process.env.MAILER_EMAIL,
+                to: email,
+                subject: 'Discover the Latest Blogs on BlogApp!',
+                html: postNotifyEmailTemplate(user?.firstname, [createdPosts])
+            };
+            return transporter.sendMail(mailOptions)
+        });
+        console.log('mail', emails);
+
+        try {
+            await Promise.all(emails);
+            console.log("All emails sent successfully");
+        } catch (error) {
+            console.error("Error sending emails:", error);
+        }
+
+        
     }
 
     return res

@@ -60,16 +60,6 @@ function ResetPassword() {
                 </div>
             }
 
-            {/* <div className='flex items-center justify-center mt-1'>
-                <div class="mb-4 flex items-center border-t-4 border-red-400 bg-red-100 p-4 text-red-800"
-                    role="alert">
-                    <FaInfoCircle className='h-5 w-5 flex-shrink-0' />
-                    <div class="ms-3 flex text-sm font-medium flex-col">
-                        It looks like you clicked on an invalid password reset link. Please try again.
-                    </div>
-                </div>
-            </div> */}
-
             <div className="flex sm:flex-col sm:gap-5 md:flex-row items-center py-4 px-2 justify-around bg-gray-100 ">
 
                 <div className='flex flex-col font-bauhaus font-semibold 2xl:text-7xl xl:text-5xl lg:text-5xl md:text-4xl sm:text-3xl text-primary-text'>

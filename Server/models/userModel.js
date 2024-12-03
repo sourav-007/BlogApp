@@ -41,6 +41,10 @@ const userSchema = mongoose.Schema(
                 ref: 'BlogModel'
             }
         ],
+        isSubscriber: {
+            type: Boolean,
+            default: false
+        },
         resetPasswordToken: {
             type: String
         },

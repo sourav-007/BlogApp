@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useBlog } from '../../context/BlogContext'
 import { useAuth } from '../../context/AuthContext'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import SaveCheckBox from '../utils/SaveCheckBox'
 import { FaAngleDoubleRight } from 'react-icons/fa'
 import { tagColorMapping } from '../utils/colorMap'

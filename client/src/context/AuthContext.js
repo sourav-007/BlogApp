@@ -264,40 +264,6 @@ export const AuthProvider = ({ children }) => {
 
     }
 
-    // useEffect(() => {
-    //     const token = localStorage.getItem('Token');
-    //     const storedIsLoggedIn = localStorage.getItem('loggedIn')
-
-    //     if (token) {
-    //         const getUserDetails = async () => {
-    //             console.log('called')
-    //             try {
-    //                 const response = await axios.get('http://localhost:5002/api/getuser', {
-    //                     headers: {
-    //                         Authorization: `Bearer ${localStorage.getItem('Token')}`,
-    //                     },
-    //                 });
-    //                 console.log(response);
-    //                 if (response.status === 200) {
-    //                     setGetUser(response.data.data);
-    //                     setIsLoggedIn(true)
-    //                 } else {
-    //                     console.error('Failed to fetch user details. Status code:', response.status);
-    //                     setIsLoggedIn(false)
-    //                 }
-    //             } catch (error) {
-    //                 console.log("Error : ", error)
-    //                 setIsLoggedIn(false)
-    //             }
-    //         };
-    //         getUserDetails();
-    //     }
-    //     else {
-    //         setIsLoggedIn(false)
-    //     }
-
-    // }, []);
-
     const forgotPassword = async (email) => {
 
         try {
@@ -308,8 +274,8 @@ export const AuthProvider = ({ children }) => {
                 setShowAlert(true)
                 setTimeout(() => {
                     setShowAlert(false)
-                }, 10000);
-
+                    logout()
+                }, 5000);
             }
         } catch (error) {
             setShowAlert(false)
@@ -339,13 +305,48 @@ export const AuthProvider = ({ children }) => {
 
     }
 
+    const subscribe = async ( email ) => {
+
+        try {
+            const response = await axios.post('http://localhost:5002/api/subscribe', {email}, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('Token')}`,
+                },
+            })
+            if(response.status === 200){
+                getUserDetails();
+            }
+        } catch (error) {
+            console.error("Failed to reset password", error);
+            console.error("Failed to reset password", error?.response?.data?.message);
+        }
+
+    }
+
+    const unsubscribe = async () => {
+
+        try {
+            const response = await axios.get('http://localhost:5002/api/unsubscribe', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('Token')}`,
+                },
+            })
+            if(response.status === 200){
+                getUserDetails();
+            }
+        } catch (error) {
+            console.error("Failed to reset password", error);
+            console.error("Failed to reset password", error?.response?.data?.message);
+        }
+
+    }    
+
     
   
-
     return (
         <AuthContext.Provider value={{
             user, errors, login, register, logout, role, isLoggedIn, getUser, avatar, updateUserDetails,
-            forgotPassword, resetPassword, showAlert, 
+            forgotPassword, resetPassword, showAlert, subscribe, unsubscribe
         }}>
             {children}
         </AuthContext.Provider>

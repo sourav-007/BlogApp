@@ -28,6 +28,7 @@ import TechBlogs from './component/Blogs/TechBlogs'
 import EditBlog from './component/Admin/EditBlog'
 import PublicRoute from './component/utils/PublicRoute'
 
+
 function App() {
 
   return (
@@ -39,7 +40,7 @@ function App() {
               <Routes>
 
                 <Route element={<Layout />}>
-      
+
                   <Route path='/register' element={<PublicRoute> <Register /> </PublicRoute>}></Route>
                   <Route path='/login' element={<PublicRoute> <Login /> </PublicRoute>}></Route>
 

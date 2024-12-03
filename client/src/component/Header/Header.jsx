@@ -57,7 +57,7 @@ function Header() {
                  ${isScrolled ? "bg-white/80 backdrop-blur-md shadow-md" : "bg-white hover:bg-white"} group`}>
 
                 <div className="container mx-auto h-28 flex flex-wrap items-center justify-between">
-                    <Link to="/" className="flex items-center text-primary-text 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl font-bold font-mono ">
+                    <Link to={getUser?.role === 'admin' ? '/dashboard' : '/'} className="flex items-center text-primary-text 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl font-bold font-mono ">
                         <FaBloggerB className='text-special' />logApp
                     </Link>
 

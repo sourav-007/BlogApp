@@ -4,7 +4,7 @@ const ApiError = require('../utils/ApiError');
 const UserModel = require('../models/userModel');
 const { uploadOnCloudinary, deleteFromCloudinary, getPublicIdFromUrl } = require('../utils/cloudinary');
 const nodemailer = require('nodemailer');
-const { resetEmailTemplate, resetSuccessEmailTemplate } = require('../utils/emailTemplates')
+const { resetEmailTemplate, resetSuccessEmailTemplate, subscribeEmailTemplate, unsubscribeEmailTemplate } = require('../utils/emailTemplates')
 const jwt = require('jsonwebtoken');
 const BlogModel = require('../models/blogModel');
 
@@ -408,7 +408,7 @@ const unSavePost = asyncErrorHandler(async (req, res) => {
 })
 
 
-const savedFavoritePost = asyncErrorHandler( async (req, res) => {
+const savedFavoritePost = asyncErrorHandler(async (req, res) => {
 
     const user = await UserModel.findById(req.user._id)
 
@@ -428,10 +428,103 @@ const savedFavoritePost = asyncErrorHandler( async (req, res) => {
 
         console.log("Favorite post fetched successfully")
 
-} )
+})
+
+const subscribeUser = asyncErrorHandler(async (req, res) => {
+
+    const { email } = req.body
+
+    if (!email) {
+        throw new ApiError(400, "Register email is required for subscribing")
+    }
+
+    const user = await UserModel.findOne({ _id: req.user._id, email })
+
+    if (!user) {
+        throw new ApiError(404, "User not found");
+    }
+
+    if (user.isSubscriber) {
+        throw new ApiError(400, "User is already subscribed")
+    }
+
+    user.isSubscriber = true;
+    await user.save({ validateBeforeSave: false })
+
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.MAILER_EMAIL,
+            pass: process.env.MAILER_EMAIL_PASSWORD
+        },
+    })
+
+    const mailOptions = {
+        from: process.env.MAILER_EMAIL,
+        to: email,
+        subject: 'Welcome to BlogApp! We’re Glad to Have You!',
+        html: subscribeEmailTemplate(user.firstname)
+    }
+
+    transporter.sendMail(mailOptions, (error, response) => {
+        if (error) {
+            console.error('Error sending email:', error);
+            return res.status(500).json(new ApiError(500, 'Error sending email.')), console.log("Error sending email.");
+        } else {
+            console.log('Subscribe mail sent:', response);
+            return res.status(200).json(new ApiResponse(200, response, 'Subscription mail has been sent successfully')), console.log("Subscription mail has been sent successfully");
+        }
+    });
+
+
+})
+
+const unsubscribeUser = asyncErrorHandler(async (req, res) => {
+
+    const user = await UserModel.findOne({ _id: req.user._id })
+
+    if (!user) {
+        throw new ApiError(404, "User not found");
+    }
+
+    if (!user.isSubscriber) {
+        throw new ApiError(400, "User is already unsubscribed")
+    }
+
+    user.isSubscriber = false;
+    await user.save({ validateBeforeSave: false })
+
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.MAILER_EMAIL,
+            pass: process.env.MAILER_EMAIL_PASSWORD
+        },
+    })
+
+    const mailOptions = {
+        from: process.env.MAILER_EMAIL,
+        to: user.email,
+        subject: 'Sorry to See You Go! You’ve Unsubscribed from BlogApp',
+        html: unsubscribeEmailTemplate(user.firstname)
+    }
+
+    transporter.sendMail(mailOptions, (error, response) => {
+        if (error) {
+            console.error('Error sending email:', error);
+            return res.status(500).json(new ApiError(500, 'Error sending email.')), console.log("Error sending email.");
+        } else {
+            console.log('Unsubscribe mail sent', response);
+            return res.status(200).json(new ApiResponse(200, response, 'Unsubscribe mail has been sent successfully')), console.log("Unsubscribe mail has been sent successfully");
+        }
+    });
+
+})
 
 
 module.exports = {
     registerUser, loginUser, logoutUser, getCurrentUser, uploadAvatar, updateUser,
-    forgotPassword, resetPassword, savePost, unSavePost, savedFavoritePost
+    forgotPassword, resetPassword, savePost, unSavePost, savedFavoritePost, subscribeUser, unsubscribeUser,
 }
