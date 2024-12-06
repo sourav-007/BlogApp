@@ -20,27 +20,24 @@ This is a multi-role based blog web application designed to cater for both regul
 
 - **User Account Management**: Allows users to update their personal details, including name and profile picture.
 
-## 🎥 Demo
 
+## 🎥 Demo
 Click on the thumbnail below to view the demo. 👇
 
 [![Video Thumbnail](https://github.com/user-attachments/assets/1f2c329d-e566-4802-a2d3-eff24e0814d2)](https://drive.google.com/file/d/1-M-3rFgTbLw8BqVtiXd5L6Ta6MSc6en-/view?usp=sharing)
 
 
 ## 🛠️ Prerequisites
-
 Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v14 or higher)
 - [MongoDB](https://www.mongodb.com/) (Local or Atlas)
 - [Cloudinary](https://cloudinary.com/) account (for media uploads)
 
 
-
-
 ## ⚙️ Installation
 1. Clone the repo: `git clone <repo-url>`
 2. Install dependencies: `npm install`
-3. Create a `.env` file and set your environment variables.
+3. Create a `.env` file and set your environment variables with the help of given `.env.sample` file.
 4. Run the app: `npm start`
 
 
