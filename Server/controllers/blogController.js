@@ -30,7 +30,7 @@ const createPost = asyncErrorHandler(async (req, res) => {
         throw new ApiError(400, "At least one tag is required");
     }
 
-    //console.log("files:", req.files);
+    
 
     const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
     // const bodyImageLocalPath = req.files?.bodyImage[0]?.path;
