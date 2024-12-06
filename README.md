@@ -4,7 +4,7 @@ This is a multi-role based blog web application designed to cater for both regul
 
 
 
-## Features
+## ✨ Features
 
 - **Role-Based Access Control**: Different user roles (Admin, User) with appropriate permissions to access and manage content.
 
@@ -20,7 +20,7 @@ This is a multi-role based blog web application designed to cater for both regul
 
 - **User Account Management**: Allows users to update their personal details, including name and profile picture.
 
-## Demo
+## 🎥 Demo
 
 Click on the thumbnail below to view the demo. 👇
 
@@ -37,14 +37,14 @@ Before you begin, ensure you have the following installed:
 
 
 
-## Installation
+## ⚙️ Installation
 1. Clone the repo: `git clone <repo-url>`
 2. Install dependencies: `npm install`
 3. Create a `.env` file and set your environment variables.
 4. Run the app: `npm start`
 
 
-## Technologies Used
+## 💻 Technologies Used
 This project is built using the following technologies:
 
 - **Frontend**: React.js, Tailwind CSS
@@ -54,7 +54,7 @@ This project is built using the following technologies:
 - **File Storage**: Cloudinary (for media uploads)
 
 
-## Packages used
+## 📦 Packages used
 
 Here are some of the key packages used in this project:
 
